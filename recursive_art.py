@@ -72,7 +72,7 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
                             values for val
         output_interval_start: the start of the interval that contains all
                                possible output values
-        output_inteval_end: the end of the interval that contains all possible
+        output_interval_end: the end of the interval that contains all possible
                             output values
 
     Returns:
@@ -86,11 +86,14 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
         >>> remap_interval(5, 4, 6, 1, 2)
         1.5
     """
-    original_range = input_interval_end-input_interval_start
-    final_range = output_interval_end-output_interval_start
 
-    divisor = final_range/original_range
-    return divisor
+    # These first three lines "calibrate" the ranges by moving them to start at zero.
+    val = val - input_interval_start
+    input_interval_end = input_interval_end - input_interval_start
+    output_interval_end = output_interval_end - output_interval_start
+
+    multiplier = output_interval_end/input_interval_end  # Creates a value to multiply the original value by.
+    return multiplier * val + output_interval_start # Use the multiplier on the original value and add back the previously removed "calibration" to reach the final value.
 
 
 def color_map(val):
