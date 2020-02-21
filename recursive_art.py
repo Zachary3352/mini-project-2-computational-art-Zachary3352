@@ -21,11 +21,11 @@ def build_random_function(min_depth, max_depth):
 
     Returns:
         The randomly generated function represented as a nested list.
-        (See the assignment writ-eup for details on the representation of
+        (See the assignment write-up for details on the representation of
         these functions)
     """
-    # TODO: implement this
-    pass
+
+
 
 
 def evaluate_random_function(f, x, y):
@@ -149,9 +149,9 @@ def generate_art(filename, x_size=350, y_size=350):
         x_size, y_size: optional args to set image dimensions (default: 350)
     """
     # Functions for red, green, and blue channels - where the magic happens!
-    red_function = ["x"]
-    green_function = ["y"]
-    blue_function = ["x"]
+    red_function = build_random_function(7, 9)
+    green_function = build_random_function(7, 9)
+    blue_function = build_random_function(7, 9)
 
     # Create image and loop over all pixels
     im = Image.new("RGB", (x_size, y_size))
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     #generate_art("myart.png")
 
-    doctest.run_docstring_examples(remap_interval, globals(), verbose=True)
+    #doctest.run_docstring_examples(remap_interval, globals(), verbose=True)
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install
